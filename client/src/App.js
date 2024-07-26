@@ -3,6 +3,7 @@ import './App.css';
 import HelloWorld from './HelloWorld.js';
 import ListPage from './ListPage.js';
 import AddPage from './AddPage.js';
+import EditPage from './EditPage.js';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
       </ListPage>
       <AddPage>
       </AddPage>
+      <EditPage>
+      </EditPage>
     </div>
   );
 }

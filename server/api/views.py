@@ -15,3 +15,7 @@ def list_page(request):
 @api_view(['GET'])
 def add_page(request):
     return Response({'message': 'add page backend response.'})
+
+@api_view(['GET'])
+def edit_page(request):
+    return Response({'message': 'edit page backend response.'})
