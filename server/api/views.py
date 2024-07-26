@@ -11,3 +11,7 @@ def hello_world(request):
 @api_view(['GET'])
 def list_page(request):
     return Response({'message': 'list page backend response.'})
+
+@api_view(['GET'])
+def add_page(request):
+    return Response({'message': 'add page backend response.'})

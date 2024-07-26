@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import HelloWorld from './HelloWorld.js';
 import ListPage from './ListPage.js';
+import AddPage from './AddPage.js';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
       </HelloWorld>
       <ListPage>
       </ListPage>
+      <AddPage>
+      </AddPage>
     </div>
   );
 }
