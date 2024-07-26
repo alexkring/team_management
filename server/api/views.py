@@ -7,3 +7,7 @@ from rest_framework.response import Response
 @api_view(['GET'])
 def hello_world(request):
     return Response({'message': 'Hello, world!'})
+
+@api_view(['GET'])
+def list_page(request):
+    return Response({'message': 'list page backend response.'})
