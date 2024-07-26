@@ -10,7 +10,22 @@ def hello_world(request):
 
 @api_view(['GET'])
 def list_page(request):
-    return Response({'message': 'list page backend response.'})
+    users = [{
+        'id': '1',
+        'first_name': 'Alex',
+        'last_name': 'Kring',
+        'email': 'awkring@gmail.com',
+        'phone_number': '415-215-2135',
+        'role': 'admin'
+    }, {
+        'id': '2',
+        'first_name': 'Jeff',
+        'last_name': 'Jones',
+        'email': 'jeff@gmail.com',
+        'phone_number': '605-305-6115',
+        'role': 'team_member'
+    }]
+    return Response({'users': users})
 
 @api_view(['GET'])
 def add_page(request):
