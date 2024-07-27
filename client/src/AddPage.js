@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageIndex from './PageIndex.js';
+import Roles from './Roles.js';
 import UserComponent from './UserComponent.js';
+import {User} from './User.js';
 
 function AddPage({isActive, onChangePage}) {
 
@@ -21,6 +23,8 @@ function AddPage({isActive, onChangePage}) {
     onChangePage(PageIndex.ListPage);
   };
 
+  const user = new User("Alex", "Kring", "awkring@gmail.com", "4152152135", Roles.Admin);
+
   if (!isActive) {
     return (<div/>);
   }
@@ -30,7 +34,7 @@ function AddPage({isActive, onChangePage}) {
       <h1>Add a team member</h1>
       <p>Set email, location and role.</p>
       <p>{message}</p>
-      <UserComponent user={null}>
+      <UserComponent user={user}>
       </UserComponent>
       <button>
         Save
