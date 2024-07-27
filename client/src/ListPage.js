@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import addUserIcon from './assets/plus.png';
+import './ListPage.css';
 
 function ListPage() {
   const [users, setUsers] = useState([]);
@@ -25,7 +27,10 @@ function ListPage() {
   );
 
   return (
-    <div>
+    <div className="ListPage">
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <img src={addUserIcon} alt="Add User" className="ListPage-add-user-icon" />
+      </div>
       <h1>Team Members</h1>
       <p>You have {users.length} team members</p>
       <div></div>
