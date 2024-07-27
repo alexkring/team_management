@@ -7,23 +7,16 @@ import {User} from './User.js';
 
 function AddPage({isActive, onChangePage}) {
 
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/add-page/')
-      .then(response => {
-        setMessage(response.data.message);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  const initialUser = new User("Alex", "Kring", "awkring@gmail.com", "4152152135", Roles.Admin);
+  const [user, setUser] = useState(initialUser);
 
   const handleCancelClick = () => {
     onChangePage(PageIndex.ListPage);
   };
 
-  const user = new User("Alex", "Kring", "awkring@gmail.com", "4152152135", Roles.Admin);
+  const handleSaveClick = () => {
+    createUser(user);
+  };
 
   if (!isActive) {
     return (<div/>);
@@ -33,10 +26,9 @@ function AddPage({isActive, onChangePage}) {
     <div>
       <h1>Add a team member</h1>
       <p>Set email, location and role.</p>
-      <p>{message}</p>
       <UserComponent user={user}>
       </UserComponent>
-      <button>
+      <button onClick={handleSaveClick}>
         Save
       </button>
       <button onClick={handleCancelClick}>
@@ -44,6 +36,17 @@ function AddPage({isActive, onChangePage}) {
       </button>
     </div>
   );
+}
+
+function createUser(user) {
+  axios
+    .post('http://localhost:8000/api/user/', {
+      user_object: user,
+    })
+    .then((response) => {
+      //setPost(response.data);
+      console.log("received response from /api/user/: " + response.data);
+    });
 }
 
 export default AddPage;
