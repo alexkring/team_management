@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import addUserIcon from './assets/plus.png';
 import userIcon from './assets/user.png';
+import PageIndex from './PageIndex.js';
 import './ListPage.css';
 
-function ListPage() {
+function ListPage({isActive, onChangePage}) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -33,10 +34,20 @@ function ListPage() {
     </div>
   );
 
+  const handleAddUserClick = () => {
+    onChangePage(PageIndex.AddPage);
+  };
+
+  if (!isActive) {
+    return (<div/>);
+  }
+
   return (
     <div className="ListPage">
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <img src={addUserIcon} alt="Add User" className="ListPage-add-user-icon" />
+        <button className="ListPage-add-user-button" onClick={handleAddUserClick}>
+          <img src={addUserIcon} alt="Add User" className="ListPage-add-user-icon" />
+        </button>
       </div>
       <h1>Team Members</h1>
       <p>You have {users.length} team members</p>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function EditPage() {
+function EditPage({isActive, onChangePage}) {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -13,6 +13,10 @@ function EditPage() {
         console.log(error);
       });
   }, []);
+
+  if (!isActive) {
+    return (<div/>);
+  }
 
   return (
     <div>

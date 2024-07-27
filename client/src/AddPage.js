@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function AddPage() {
+function AddPage({isActive, onChangePage}) {
+
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -14,6 +15,10 @@ function AddPage() {
       });
   }, []);
 
+  if (!isActive) {
+    return (<div/>);
+  }
+  
   return (
     <div>
       <h1>Add Page</h1>
