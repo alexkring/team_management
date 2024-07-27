@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageIndex from './PageIndex.js';
+import UserComponent from './UserComponent.js';
 
 function AddPage({isActive, onChangePage}) {
 
@@ -26,8 +27,11 @@ function AddPage({isActive, onChangePage}) {
 
   return (
     <div>
-      <h1>Add Page</h1>
+      <h1>Add a team member</h1>
+      <p>Set email, location and role.</p>
       <p>{message}</p>
+      <UserComponent user={null}>
+      </UserComponent>
       <button>
         Save
       </button>

@@ -11,7 +11,6 @@ function App() {
   const [pageIndex, setPageIndex] = useState(PageIndex.ListPage);
 
   const handleChangePage = (pageIndex) => {
-    console.log("Hello from my function!");
     setPageIndex(pageIndex);
   };
 
