@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PageIndex from './PageIndex.js';
 
 function AddPage({isActive, onChangePage}) {
 
@@ -15,14 +16,24 @@ function AddPage({isActive, onChangePage}) {
       });
   }, []);
 
+  const handleCancelClick = () => {
+    onChangePage(PageIndex.ListPage);
+  };
+
   if (!isActive) {
     return (<div/>);
   }
-  
+
   return (
     <div>
       <h1>Add Page</h1>
       <p>{message}</p>
+      <button>
+        Save
+      </button>
+      <button onClick={handleCancelClick}>
+        Cancel
+      </button>
     </div>
   );
 }
