@@ -46,7 +46,7 @@ function AddPage({isActive, onChangePage}) {
   );
 }
 
-function createUser(user, onComplete) {
+function createUser(user) {
   return axios
     .post('http://localhost:8000/api/user/', {
       user_object: user

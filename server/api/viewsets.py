@@ -12,3 +12,8 @@ from .models import User
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all() # Get all items from the model
     serializer_class = UserSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()  # Get the object to delete
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

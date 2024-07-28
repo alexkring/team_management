@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageIndex from './PageIndex.js';
 import UserComponent from './UserComponent.js';
+import HttpStatusCodes from './HttpStatusCodes.js';
 
 function EditPage({isActive, onChangePage, user}) {
 
@@ -10,7 +11,14 @@ function EditPage({isActive, onChangePage, user}) {
   };
 
   const handleDeleteClick = () => {
-    // TODO: delete user, and change page
+    deleteUser(user.id)
+      .then((response) => { 
+        console.log("handleDeleteClick_response: ", response);
+        if (response == HttpStatusCodes.NoContent) {
+          console.log('user deleted successfully!');
+          onChangePage(PageIndex.ListPage);
+        }
+      });
   };
 
   if (!isActive) {
@@ -31,6 +39,18 @@ function EditPage({isActive, onChangePage, user}) {
       </button>
     </div>
   );
+}
+
+function deleteUser(id) {
+  const url = `http://localhost:8000/api/users/${id}`;
+  return axios
+    .delete(url)
+    .then((response) => {
+    console.log("received response from delete /api/user/: " + response.data);
+    console.log("status: " + response.status);
+    let statusCode = parseInt(response.status);
+    return statusCode;
+  });
 }
 
 export default EditPage;
