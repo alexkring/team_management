@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import addUserIcon from './assets/plus.png';
 import userIcon from './assets/user.png';
 import PageIndex from './PageIndex.js';
 import './ListPage.css';
 
-function ListPage({isActive, onChangePage}) {
+function ListPage({isActive, onChangePage, onChangeUserContext}) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -18,8 +18,13 @@ function ListPage({isActive, onChangePage}) {
       });
   }, []);
 
+  const handleEditUserClick = (user) => {
+    onChangeUserContext(user);
+    onChangePage(PageIndex.EditPage);
+  };
+
   const renderedUsers = users.map((user) =>
-    <div key={user.id} className="ListPage-user">
+    <div key={user.id} className="ListPage-user" onClick={ () => { handleEditUserClick(user); } }>
       <div className="ListPage-user-icon">
         <img src={userIcon} alt="Add User" className="ListPage-user-icon-image" />
       </div>
