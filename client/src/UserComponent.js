@@ -134,28 +134,6 @@ function RightButton({onCreateClick, onUpdateClick, enableUpdate}) {
 }
 
 function updateUser(user) {
-  // TODO
-  /*
-  user = {
-    "id": id,
-    "first_name": form.refs.first_name.value,
-    "last_name": form.refs.last_name.value,
-    "email": form.refs.email.value,
-    "phone_number": form.refs.phone_number.value,
-    "role": form.refs.description.value
-  };
-
-  const url = `http://localhost:8000/api/users/${id}`;
-  return axios
-    .update(url)
-    .then((response) => {
-    console.log("received response from delete /api/user/: " + response.data);
-    console.log("status: " + response.status);
-    let statusCode = parseInt(response.status);
-    return statusCode;
-  });
-  */
-
   const url = `http://localhost:8000/api/users/${user.id}/`;
   return axios
     .patch(url, user)

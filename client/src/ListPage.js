@@ -17,7 +17,7 @@ function ListPage({isActive, onChangePage, onChangeUserContext}) {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [isActive]);
 
   const handleEditUserClick = (user) => {
     onChangeUserContext(user);
