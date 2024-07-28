@@ -11,19 +11,13 @@ function AddPage({isActive, onChangePage}) {
   const initialUser = new User("Alex", "Kring", "awkring@gmail.com", "4152152135", Roles.Admin);
   const [user, setUser] = useState(initialUser);
 
-  const handleCancelClick = () => {
+  const handleCreateClick= (updatedUser) => {
+    setUser(updatedUser);
     onChangePage(PageIndex.ListPage);
   };
 
-  const handleSaveClick = () => {
-    createUser(user)
-      .then((response) => { 
-        console.log("handleSaveClick_response: ", response);
-        if (response == HttpStatusCodes.Created) {
-          console.log('user successfully created!');
-          onChangePage(PageIndex.ListPage);
-        }
-      });
+  const handleCancelClick= () => {
+    onChangePage(PageIndex.ListPage);
   };
 
   if (!isActive) {
@@ -34,30 +28,10 @@ function AddPage({isActive, onChangePage}) {
     <div>
       <h1>Add a team member</h1>
       <p>Set email, location and role.</p>
-      <UserComponent user={user}>
+      <UserComponent user={user} onSaveUser={handleCreateClick} onCancel={handleCancelClick}>
       </UserComponent>
-      <button onClick={handleSaveClick}>
-        Save
-      </button>
-      <button onClick={handleCancelClick}>
-        Cancel
-      </button>
     </div>
   );
-}
-
-function createUser(user) {
-  return axios
-    .post('http://localhost:8000/api/user/', {
-      user_object: user
-    })
-    .then((response) => {
-      console.log("received response from /api/user/: " + response.data);
-      console.log("message: " + response.data.message);
-      console.log("status: " + response.data.status);
-      let statusCode = parseInt(response.data.status);
-      return statusCode;
-    });
 }
 
 export default AddPage;

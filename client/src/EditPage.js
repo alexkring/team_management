@@ -6,19 +6,12 @@ import HttpStatusCodes from './HttpStatusCodes.js';
 
 function EditPage({isActive, onChangePage, user}) {
 
-  const handleSaveClick = () => {
+  const handleUpdateClick = () => {
     onChangePage(PageIndex.ListPage);
   };
 
-  const handleDeleteClick = () => {
-    deleteUser(user.id)
-      .then((response) => { 
-        console.log("handleDeleteClick_response: ", response);
-        if (response == HttpStatusCodes.NoContent) {
-          console.log('user deleted successfully!');
-          onChangePage(PageIndex.ListPage);
-        }
-      });
+  const handleCancelClick = () => {
+    onChangePage(PageIndex.ListPage);
   };
 
   if (!isActive) {
@@ -29,28 +22,10 @@ function EditPage({isActive, onChangePage, user}) {
     <div>
       <h1>Edit team member</h1>
       <p>Edit contact info, location and role.</p>
-      <UserComponent user={user}>
+      <UserComponent user={user} enableDelete={true} enableUpdate={true} onSaveUser={handleUpdateClick} onCancel={handleCancelClick}>
       </UserComponent>
-      <button onClick={handleDeleteClick}>
-        Delete
-      </button>
-      <button onClick={handleSaveClick}>
-        Save
-      </button>
     </div>
   );
-}
-
-function deleteUser(id) {
-  const url = `http://localhost:8000/api/users/${id}`;
-  return axios
-    .delete(url)
-    .then((response) => {
-    console.log("received response from delete /api/user/: " + response.data);
-    console.log("status: " + response.status);
-    let statusCode = parseInt(response.status);
-    return statusCode;
-  });
 }
 
 export default EditPage;
