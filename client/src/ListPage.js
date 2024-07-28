@@ -11,7 +11,7 @@ function ListPage({isActive, onChangePage, onChangeUserContext}) {
   useEffect(() => {
     axios.get('http://localhost:8000/api/users/')
       .then(response => {
-        console.log("akring-response: ", JSON.stringify(response.data));
+        console.log("response: ", JSON.stringify(response.data));
         setUsers(response.data);
       })
       .catch(error => {

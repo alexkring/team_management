@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ListPage from './ListPage.js';
 import AddPage from './AddPage.js';
