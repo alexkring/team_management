@@ -30,7 +30,6 @@ function ListPage({isActive, onChangePage, onChangeUserContext}) {
         <img src={userIcon} alt="Add User" className="ListPage-user-icon-image" />
       </div>
       <div className="ListPage-user-info">
-        <div> Id: {user.id} </div>
         <div> First name: {user.first_name} </div>
         <div> Last name: {user.last_name} </div>
         <div> Email: {user.email} </div>
