@@ -9,9 +9,9 @@ function ListPage({isActive, onChangePage, onChangeUserContext}) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/list-page/')
+    axios.get('http://localhost:8000/api/users/')
       .then(response => {
-        setUsers(response.data.users);
+        setUsers(response.data);
       })
       .catch(error => {
         console.log(error);
