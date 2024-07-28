@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageIndex from './PageIndex.js';
 import Roles from './Roles.js';
+import HttpStatusCodes from './HttpStatusCodes.js';
 import UserComponent from './UserComponent.js';
 import {User} from './User.js';
 
@@ -15,7 +16,14 @@ function AddPage({isActive, onChangePage}) {
   };
 
   const handleSaveClick = () => {
-    createUser(user);
+    createUser(user)
+      .then((response) => { 
+        console.log("handleSaveClick_response: ", response);
+        if (response == HttpStatusCodes.Created) {
+          console.log('user successfully created!');
+          onChangePage(PageIndex.ListPage);
+        }
+      });
   };
 
   if (!isActive) {
@@ -38,14 +46,17 @@ function AddPage({isActive, onChangePage}) {
   );
 }
 
-function createUser(user) {
-  axios
+function createUser(user, onComplete) {
+  return axios
     .post('http://localhost:8000/api/user/', {
-      user_object: user,
+      user_object: user
     })
     .then((response) => {
-      //setPost(response.data);
       console.log("received response from /api/user/: " + response.data);
+      console.log("message: " + response.data.message);
+      console.log("status: " + response.data.status);
+      let statusCode = parseInt(response.data.status);
+      return statusCode;
     });
 }
 

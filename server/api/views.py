@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -43,9 +44,11 @@ def user(request):
     #    serializer.save()
     #    return Response(serializer.data, status=status.HTTP_201_CREATED)
     # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    print("request: ", request.data);
+    # request_data = json.loads(request.data);
     response_object = {
         'message': 'called endpoint to create new user.',
-        'user': request.data
+        'status': status.HTTP_201_CREATED
     }
     return Response(response_object, status=status.HTTP_201_CREATED)
 
