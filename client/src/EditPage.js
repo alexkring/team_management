@@ -22,7 +22,7 @@ function EditPage({isActive, onChangePage, user}) {
     <div>
       <h1>Edit team member</h1>
       <p>Edit contact info, location and role.</p>
-      <UserComponent user={user} enableDelete={true} enableUpdate={true} onSaveUser={handleUpdateClick} onCancel={handleCancelClick}>
+      <UserComponent initialUser={user} enableDelete={true} enableUpdate={true} onSaveUser={handleUpdateClick} onCancel={handleCancelClick}>
       </UserComponent>
     </div>
   );

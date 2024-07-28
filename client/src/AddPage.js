@@ -8,7 +8,7 @@ import {User} from './User.js';
 
 function AddPage({isActive, onChangePage}) {
 
-  const initialUser = new User("Alex", "Kring", "awkring@gmail.com", "4152152135", Roles.Admin);
+  const initialUser = new User("", "", "", "", Roles.TeamMember);
   const [user, setUser] = useState(initialUser);
 
   const handleCreateClick= (updatedUser) => {
@@ -28,7 +28,7 @@ function AddPage({isActive, onChangePage}) {
     <div>
       <h1>Add a team member</h1>
       <p>Set email, location and role.</p>
-      <UserComponent user={user} onSaveUser={handleCreateClick} onCancel={handleCancelClick}>
+      <UserComponent initialUser={user} onSaveUser={handleCreateClick} onCancel={handleCancelClick}>
       </UserComponent>
     </div>
   );

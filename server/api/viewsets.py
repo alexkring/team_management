@@ -17,3 +17,10 @@ class UserViewSet(viewsets.ModelViewSet):
         instance = self.get_object()  # Get the object to delete
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.get_object() # Get the object to update
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_206_PARTIAL_CONTENT)
