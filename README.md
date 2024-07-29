@@ -6,12 +6,13 @@ django, python3, react
 
 # setup the server
 From the team-management/server directory:
-	1.) install dependencies:
- 		pip install Django
-		pip install djangorestframework
-		pip install django-cors-headers
-	1.) run the command `python3 manage.py makemigrations api`
-	2.) run the command `python3 manage.py migrate api`
+
+	1. install dependencies:
+ 	- pip install Django
+	- pip install djangorestframework
+	- pip install django-cors-headers
+	2. run the command `python3 manage.py makemigrations api`
+	3. run the command `python3 manage.py migrate api`
 
 
 # run the server
